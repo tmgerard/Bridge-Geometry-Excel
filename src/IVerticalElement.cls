@@ -7,7 +7,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
-'@Folder("Alignment.Vertical")
+'@Folder("BridgeGeometry.Alignment.Vertical")
 '@ModuleDescription("Describes station limits and elevation of vertical alignment element.")
 '@IgnoreModule
 '@Interface

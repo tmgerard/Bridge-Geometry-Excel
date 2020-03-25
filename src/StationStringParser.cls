@@ -9,7 +9,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 '@ModuleAttribute VB_Ext_KEY, "Rubberduck", "Predeclared Class Module"
 '@PredeclaredId
-'@Folder("Alignment.Dimensioning")
+'@Folder("BridgeGeometry.Alignment.Dimensioning")
 
 Option Explicit
 

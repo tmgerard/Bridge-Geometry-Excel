@@ -1,5 +1,5 @@
 Attribute VB_Name = "AlignmentOperations"
-'@Folder("Alignment")
+'@Folder("BridgeGeometry.Alignment")
 Option Explicit
 
 Public Function StationOnCurveElement(ByVal AlignmentElement As IAlignmentElement, _

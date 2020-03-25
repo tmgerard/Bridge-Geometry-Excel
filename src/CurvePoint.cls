@@ -7,7 +7,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
-'@Folder("Alignment.Dimensioning")
+'@Folder("BridgeGeometry.Alignment.Dimensioning")
 '@ModuleDescription("Stores values for a point of interest along a roadway alignment.")
 Option Explicit
 

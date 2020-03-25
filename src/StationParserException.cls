@@ -8,7 +8,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 '@PredeclaredId
-'@Folder("Alignment.Dimensioning")
+'@Folder("BridgeGeometry.Alignment.Dimensioning")
 
 Option Explicit
 

@@ -1,5 +1,5 @@
 Attribute VB_Name = "StationMath"
-'@Folder("Alignment.Dimensioning")
+'@Folder("BridgeGeometry.Alignment.Dimensioning")
 Option Explicit
 Option Private Module
 
