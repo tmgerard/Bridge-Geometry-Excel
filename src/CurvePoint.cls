@@ -16,33 +16,33 @@ Private Type TCurvePoint
     Elevation As Double
 End Type
 
-Private this As TCurvePoint
+Private This As TCurvePoint
 
 Private Sub Class_Initialize()
-    Set this.Station = New Station
+    Set This.Station = New Station
 End Sub
 
 Private Sub Class_Terminate()
-    Set this.Station = Nothing
+    Set This.Station = Nothing
 End Sub
 
 Public Sub SetCurvePoint(ByVal Station As Station, ByVal Elevation As Double)
-    With this
+    With This
         Set .Station = Station
         .Elevation = Elevation
     End With
 End Sub
 
 Public Property Get Elevation() As Double
-    Elevation = this.Elevation
+    Elevation = This.Elevation
 End Property
 
 Public Property Get Station() As Station
-    Set Station = this.Station
+    Set Station = This.Station
 End Property
 
 Public Property Get StationValue() As Double
-    StationValue = this.Station.Value
+    StationValue = This.Station.Value
 End Property
 
 '@Description("Checks if given curve point has the same station and elevation as compared point.")
@@ -51,8 +51,8 @@ Public Function Equals(ByVal OtherCurvePoint As CurvePoint) As Boolean
     Dim Result As Boolean
     Result = False
     
-    If DoubleCompare.CompareDoubleRound(this.Elevation, OtherCurvePoint.Elevation) And _
-        this.Station.Equals(OtherCurvePoint.Station) Then
+    If DoubleCompare.CompareDoubleRound(This.Elevation, OtherCurvePoint.Elevation) And _
+        This.Station.Equals(OtherCurvePoint.Station) Then
         Result = True
     End If
     
@@ -65,8 +65,8 @@ Public Function SlopeTo(ByVal OtherCurvePoint As CurvePoint) As Double
     Dim DeltaY As Double
     Dim DeltaX As Double
     
-    DeltaY = OtherCurvePoint.Elevation - this.Elevation
-    DeltaX = Math.Abs(OtherCurvePoint.StationValue - this.Station.Value)
+    DeltaY = OtherCurvePoint.Elevation - This.Elevation
+    DeltaX = Math.Abs(OtherCurvePoint.StationValue - This.Station.Value)
     
     SlopeTo = DeltaY / DeltaX
 

@@ -19,19 +19,19 @@ Private Type TLinearGrade
     EndLinearGrade As CurvePoint
 End Type
 
-Private this As TLinearGrade
+Private This As TLinearGrade
 Private Const BeginStationErrorMessage As String = "Beginning of linear grade station is greater than end of linear grade station."
 Private Const StationNotOnCurveErrorMessage As String = "Given station is not within the limits of the linear grade."
  
 Private Sub Class_Initialize()
-    With this
+    With This
         Set .BeginLinearGrade = New CurvePoint
         Set .EndLinearGrade = New CurvePoint
     End With
 End Sub
 
 Private Sub Class_Terminate()
-    With this
+    With This
         Set .BeginLinearGrade = Nothing
         Set .EndLinearGrade = Nothing
     End With
@@ -41,7 +41,7 @@ Public Sub Create(ByVal BeginLinearGrade As CurvePoint, ByVal EndLinearGrade As 
     
     CheckStationLimits BeginLinearGrade.Station, EndLinearGrade.Station
    
-    With this
+    With This
         Set .BeginLinearGrade = BeginLinearGrade
         Set .EndLinearGrade = EndLinearGrade
     End With
@@ -49,28 +49,28 @@ Public Sub Create(ByVal BeginLinearGrade As CurvePoint, ByVal EndLinearGrade As 
 End Sub
 
 Public Property Get BeginStationElevation() As Double
-    BeginStationElevation = this.BeginLinearGrade.Elevation
+    BeginStationElevation = This.BeginLinearGrade.Elevation
 End Property
 
 Public Property Get BeginStationValue() As Double
-    BeginStationValue = this.BeginLinearGrade.StationValue
+    BeginStationValue = This.BeginLinearGrade.StationValue
 End Property
 
 Public Property Get EndStationElevation() As Double
-    EndStationElevation = this.EndLinearGrade.Elevation
+    EndStationElevation = This.EndLinearGrade.Elevation
 End Property
 
 Public Property Get EndStationValue() As Double
-    EndStationValue = this.EndLinearGrade.StationValue
+    EndStationValue = This.EndLinearGrade.StationValue
 End Property
 
 Public Function ElevationAt(ByVal Station As Station) As Double
     CheckStationOnVerticalElement Station
-    ElevationAt = this.BeginLinearGrade.Elevation + Me.Grade * (Station.Value - this.BeginLinearGrade.StationValue)
+    ElevationAt = This.BeginLinearGrade.Elevation + Me.Grade * (Station.Value - This.BeginLinearGrade.StationValue)
 End Function
 
 Public Function Grade() As Double
-    Grade = this.BeginLinearGrade.SlopeTo(this.EndLinearGrade)
+    Grade = This.BeginLinearGrade.SlopeTo(This.EndLinearGrade)
 End Function
 
 Private Sub CheckStationLimits(ByVal BeginStation As Station, ByVal EndStation As Station)

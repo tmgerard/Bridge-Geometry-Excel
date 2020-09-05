@@ -20,13 +20,13 @@ Private Type TEqualTangentParabola
     GradeOut As Double
 End Type
 
-Private this As TEqualTangentParabola
+Private This As TEqualTangentParabola
 Private Const BeginStationErrorMessage As String = "Beginning of vertical curve station is greater than end of vertical curve station."
 Private Const StationNotOnCurveErrorMessage As String = "Given station is not within the limits of the vertical curve."
 Private Const DecimalToPercent As Double = 100
 
 Private Sub Class_Initialize()
-    With this
+    With This
         Set .BeginVerticalCurve = New CurvePoint
         Set .TangentIntersection = New CurvePoint
         Set .EndVerticalCurve = New CurvePoint
@@ -34,7 +34,7 @@ Private Sub Class_Initialize()
 End Sub
 
 Private Sub Class_Terminate()
-    With this
+    With This
         Set .BeginVerticalCurve = Nothing
         Set .TangentIntersection = Nothing
         Set .EndVerticalCurve = Nothing
@@ -53,7 +53,7 @@ Public Sub CreateByCurvePoints(ByVal PVC As CurvePoint, ByVal PVIElevation As Do
     Set PVI = New CurvePoint
     PVI.SetCurvePoint PVIStation, PVIElevation
     
-    With this
+    With This
         Set .BeginVerticalCurve = PVC
         Set .TangentIntersection = PVI
         Set .EndVerticalCurve = PVT
@@ -79,7 +79,7 @@ Public Sub CreateByTangentIntersection(ByVal PVI As CurvePoint, ByVal Length As 
     Dim PVTElevation As Double
     PVTElevation = PVI.Elevation + ((GradeOut) * (Length / 2))
     
-    With this
+    With This
         .BeginVerticalCurve.SetCurvePoint PVCStation, PVCElevation
         Set .TangentIntersection = PVI
         .EndVerticalCurve.SetCurvePoint PVTStation, PVTElevation
@@ -90,35 +90,35 @@ Public Sub CreateByTangentIntersection(ByVal PVI As CurvePoint, ByVal Length As 
 End Sub
 
 Public Property Get BeginStationValue() As Double
-    BeginStationValue = this.BeginVerticalCurve.StationValue
+    BeginStationValue = This.BeginVerticalCurve.StationValue
 End Property
 
 Public Property Get BeginElevationValue() As Double
-    BeginElevationValue = this.BeginVerticalCurve.Elevation
+    BeginElevationValue = This.BeginVerticalCurve.Elevation
 End Property
 
 Public Property Get EndStationValue() As Double
-    EndStationValue = this.EndVerticalCurve.StationValue
+    EndStationValue = This.EndVerticalCurve.StationValue
 End Property
 
 Public Property Get EndElevationValue() As Double
-    EndElevationValue = this.EndVerticalCurve.Elevation
+    EndElevationValue = This.EndVerticalCurve.Elevation
 End Property
 
 Public Property Get GradeIn() As Double
-    GradeIn = this.GradeIn
+    GradeIn = This.GradeIn
 End Property
 
 Public Property Get GradeOut() As Double
-    GradeOut = this.GradeOut
+    GradeOut = This.GradeOut
 End Property
 
 Public Function ChangeInGradient() As Double
-    ChangeInGradient = DecimalToPercent * Math.Abs(this.GradeOut - this.GradeIn)
+    ChangeInGradient = DecimalToPercent * Math.Abs(This.GradeOut - This.GradeIn)
 End Function
 
 Public Function Length() As Double
-    Length = this.EndVerticalCurve.StationValue - this.BeginVerticalCurve.StationValue
+    Length = This.EndVerticalCurve.StationValue - This.BeginVerticalCurve.StationValue
 End Function
 
 Public Function MiddleOrdinate() As Double
@@ -126,11 +126,11 @@ Public Function MiddleOrdinate() As Double
 End Function
 
 Public Function RateOfGradeChangePerStation() As Double
-    RateOfGradeChangePerStation = DecimalToPercent * (this.GradeOut - this.GradeIn) / (Me.Length / FeetPerStation)
+    RateOfGradeChangePerStation = DecimalToPercent * (This.GradeOut - This.GradeIn) / (Me.Length / FeetPerStation)
 End Function
 
 Public Function ToTurningPoint() As Double
-    ToTurningPoint = FeetPerStation * (DecimalToPercent * -this.GradeIn / Me.RateOfGradeChangePerStation)
+    ToTurningPoint = FeetPerStation * (DecimalToPercent * -This.GradeIn / Me.RateOfGradeChangePerStation)
 End Function
 
 Public Function ElevationAt(ByVal Station As Station) As Double
@@ -138,7 +138,7 @@ Public Function ElevationAt(ByVal Station As Station) As Double
     CheckStationOnVerticalElement Station
 
     Dim DistanceToPointInStations As Double
-    DistanceToPointInStations = (Station.Value - this.BeginVerticalCurve.StationValue) / FeetPerStation
+    DistanceToPointInStations = (Station.Value - This.BeginVerticalCurve.StationValue) / FeetPerStation
     
     '@Ignore UseMeaningfulName
     Dim Term1 As Double
@@ -146,9 +146,9 @@ Public Function ElevationAt(ByVal Station As Station) As Double
     
     '@Ignore UseMeaningfulName
     Dim Term2 As Double
-    Term2 = (DecimalToPercent * this.GradeIn) * DistanceToPointInStations
+    Term2 = (DecimalToPercent * This.GradeIn) * DistanceToPointInStations
     
-    ElevationAt = Term1 + Term2 + this.BeginVerticalCurve.Elevation
+    ElevationAt = Term1 + Term2 + This.BeginVerticalCurve.Elevation
 End Function
 
 Public Function SlopeAt(ByVal Station As Station) As Double
@@ -156,13 +156,13 @@ Public Function SlopeAt(ByVal Station As Station) As Double
     CheckStationOnVerticalElement Station
 
     Dim DistanceToPointInStations As Double
-    DistanceToPointInStations = (Station.Value - this.BeginVerticalCurve.StationValue) / FeetPerStation
+    DistanceToPointInStations = (Station.Value - This.BeginVerticalCurve.StationValue) / FeetPerStation
     
     '@Ignore UseMeaningfulName
     Dim Term1 As Double
     Term1 = Me.RateOfGradeChangePerStation * DistanceToPointInStations
     
-    SlopeAt = Term1 + (DecimalToPercent * this.GradeIn)
+    SlopeAt = Term1 + (DecimalToPercent * This.GradeIn)
 
 End Function
 
